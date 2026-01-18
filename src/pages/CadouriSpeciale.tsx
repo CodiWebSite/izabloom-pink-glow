@@ -1,45 +1,28 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import ProductGrid from "@/components/ProductGrid";
 import specialGifts from "@/assets/special-gifts.jpg";
 
 const CadouriSpeciale = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-primary/5 via-accent/10 to-background">
       <Header />
       <main>
         <PageHero
           title="Cadouri Speciale"
-          description="Seturi exclusive pentru momente de răsfăț și celebrare"
+          description="Seturi cadou atent pregătite pentru persoanele dragi"
           image={specialGifts}
         />
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-lg text-muted-foreground mb-8">
-                Oferă un cadou care încântă simțurile. Seturile noastre de cadouri 
-                sunt perfecte pentru zile de naștere, sărbători sau pur și simplu 
-                pentru a arăta cuiva că îți pasă.
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <p className="text-lg text-muted-foreground">
+                Oferă cadouri memorabile cu seturile noastre speciale, perfecte pentru orice ocazie: 
+                zile de naștere, sărbători sau pur și simplu pentru a arăta cuiva cât de mult îți pasă.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-                <div className="bg-card rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Seturi SPA</h3>
-                  <p className="text-muted-foreground">Lumânări + produse relaxante</p>
-                </div>
-                <div className="bg-card rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Cutii Cadou</h3>
-                  <p className="text-muted-foreground">Prezentare elegantă</p>
-                </div>
-                <div className="bg-card rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Seturi Tematice</h3>
-                  <p className="text-muted-foreground">Pentru sărbători speciale</p>
-                </div>
-                <div className="bg-card rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Cadouri Corporate</h3>
-                  <p className="text-muted-foreground">Pentru parteneri și angajați</p>
-                </div>
-              </div>
             </div>
+            <ProductGrid category="cadouri-speciale" />
           </div>
         </section>
       </main>

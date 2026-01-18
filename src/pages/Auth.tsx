@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Logo from "@/components/Logo";
+import { useAuth } from "@/hooks/useAuth";
 
 const Auth = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -15,24 +17,47 @@ const Auth = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  
+  const { signIn, signUp, user } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  // Redirect if already logged in
+  if (user) {
+    navigate("/");
+    return null;
+  }
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Will be connected to authentication later
-    console.log("Login:", { loginEmail, loginPassword });
+    setLoading(true);
+    const { error } = await signIn(loginEmail, loginPassword);
+    if (!error) {
+      navigate("/");
+    }
+    setLoading(false);
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Will be connected to authentication later
-    console.log("Register:", { registerName, registerEmail, registerPassword });
+    
+    if (registerPassword !== registerConfirmPassword) {
+      return;
+    }
+    
+    setLoading(true);
+    const { error } = await signUp(registerEmail, registerPassword, registerName);
+    if (!error) {
+      navigate("/");
+    }
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary/5 via-accent/10 to-background">
       <Header />
       <main className="flex-1 pt-16 md:pt-20 flex items-center justify-center py-12 px-4">
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md bg-card/80 backdrop-blur-sm">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
               <Logo />
@@ -73,14 +98,9 @@ const Auth = () => {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Conectare
+                  <Button type="submit" className="w-full" disabled={loading}>
+                    {loading ? "Se conectează..." : "Conectare"}
                   </Button>
-                  <p className="text-center text-sm text-muted-foreground">
-                    <a href="#" className="text-primary hover:underline">
-                      Ai uitat parola?
-                    </a>
-                  </p>
                 </form>
               </TabsContent>
 
@@ -129,9 +149,16 @@ const Auth = () => {
                       onChange={(e) => setRegisterConfirmPassword(e.target.value)}
                       required
                     />
+                    {registerPassword && registerConfirmPassword && registerPassword !== registerConfirmPassword && (
+                      <p className="text-sm text-destructive">Parolele nu coincid</p>
+                    )}
                   </div>
-                  <Button type="submit" className="w-full">
-                    Creează cont
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    disabled={loading || registerPassword !== registerConfirmPassword}
+                  >
+                    {loading ? "Se creează contul..." : "Creează cont"}
                   </Button>
                 </form>
               </TabsContent>
