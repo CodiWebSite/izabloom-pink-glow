@@ -11,37 +11,37 @@ const categories = [
     title: "Lumânări Mici",
     description: "Lumânări delicate perfecte pentru decoruri intime și cadouri speciale",
     image: smallCandles,
-    href: "#lumanari-mici",
+    href: "/lumanari-mici",
   },
   {
     title: "Lumânări Mari",
     description: "Lumânări impunătoare pentru ocazii speciale și evenimente deosebite",
     image: largeCandles,
-    href: "#lumanari-mari",
+    href: "/lumanari-mari",
   },
   {
     title: "Lumânări Delicioase",
     description: "Parfumuri îmbietoare care transformă orice spațiu într-o oază de relaxare",
     image: scentedCandles,
-    href: "#lumanari-delicioase",
+    href: "/lumanari-delicioase",
   },
   {
     title: "Mărturii Nuntă",
     description: "Amintiri parfumate pentru invitații nunții tale de vis",
     image: weddingFavors,
-    href: "#marturii-nunta",
+    href: "/marturii-nunta",
   },
   {
     title: "Mărturii Botez",
     description: "Cadouri delicate pentru celebrarea celor mici",
     image: baptismFavors,
-    href: "#marturii-botez",
+    href: "/marturii-botez",
   },
   {
     title: "Cadouri Speciale",
     description: "Seturi exclusive pentru momente de răsfăț și celebrare",
     image: specialGifts,
-    href: "#cadouri",
+    href: "/cadouri-speciale",
   },
 ];
 

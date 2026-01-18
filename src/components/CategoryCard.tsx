@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
 
 interface CategoryCardProps {
@@ -9,7 +10,7 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ title, description, image, href }: CategoryCardProps) => {
   return (
-    <a href={href} className="block group">
+    <Link to={href} className="block group">
       <Card className="overflow-hidden border-border/50 bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
         <div className="aspect-square overflow-hidden">
           <img
@@ -25,7 +26,7 @@ const CategoryCard = ({ title, description, image, href }: CategoryCardProps) =>
           <p className="text-muted-foreground text-sm">{description}</p>
         </CardContent>
       </Card>
-    </a>
+    </Link>
   );
 };
 
