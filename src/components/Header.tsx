@@ -1,17 +1,25 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
-const menuItems = [
-  { name: "Acasă", href: "#acasa" },
-  { name: "Lumânări Mici", href: "#lumanari-mici" },
-  { name: "Lumânări Mari", href: "#lumanari-mari" },
-  { name: "Lumânări Delicioase", href: "#lumanari-delicioase" },
-  { name: "Lumânări de Servit", href: "#lumanari-servit" },
-  { name: "Mărturii Nuntă", href: "#marturii-nunta" },
-  { name: "Mărturii Botez", href: "#marturii-botez" },
-  { name: "Cadouri Speciale", href: "#cadouri" },
+const lumanariItems = [
+  { name: "Lumânări Mici", href: "/lumanari-mici" },
+  { name: "Lumânări Mari", href: "/lumanari-mari" },
+  { name: "Lumânări Delicioase", href: "/lumanari-delicioase" },
+  { name: "Lumânări de Servit", href: "/lumanari-servit" },
+];
+
+const martiriiItems = [
+  { name: "Mărturii Nuntă", href: "/marturii-nunta" },
+  { name: "Mărturii Botez", href: "/marturii-botez" },
 ];
 
 const Header = () => {
@@ -21,19 +29,58 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Logo />
-          
+          <Link to="/">
+            <Logo />
+          </Link>
+
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
-            {menuItems.slice(0, 4).map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
+            <Link
+              to="/"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Acasă
+            </Link>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                Lumânări <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {lumanariItems.map((item) => (
+                  <DropdownMenuItem key={item.href} asChild>
+                    <Link to={item.href}>{item.name}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                Mărturii <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {martiriiItems.map((item) => (
+                  <DropdownMenuItem key={item.href} asChild>
+                    <Link to={item.href}>{item.name}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Link
+              to="/cadouri-speciale"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Cadouri Speciale
+            </Link>
+
+            <Link
+              to="/contact"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -51,16 +98,57 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-2">
-              {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
+              <Link
+                to="/"
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Acasă
+              </Link>
+
+              <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wide">
+                Lumânări
+              </div>
+              {lumanariItems.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="px-6 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
+
+              <div className="px-4 py-2 text-xs font-semibold text-primary uppercase tracking-wide">
+                Mărturii
+              </div>
+              {martiriiItems.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="px-6 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+
+              <Link
+                to="/cadouri-speciale"
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Cadouri Speciale
+              </Link>
+
+              <Link
+                to="/contact"
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
             </div>
           </nav>
         )}

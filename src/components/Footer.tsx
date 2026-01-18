@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
 const Footer = () => {
@@ -5,21 +6,26 @@ const Footer = () => {
     <footer className="py-12 bg-card border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <Logo />
-          
+          <Link to="/">
+            <Logo />
+          </Link>
+
           <nav className="flex flex-wrap justify-center gap-6">
-            <a href="#acasa" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Acasă
-            </a>
-            <a href="#lumanari-mici" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            </Link>
+            <Link to="/lumanari-mici" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Lumânări
-            </a>
-            <a href="#marturii-nunta" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            </Link>
+            <Link to="/marturii-nunta" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Mărturii
-            </a>
-            <a href="#cadouri" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            </Link>
+            <Link to="/cadouri-speciale" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Cadouri
-            </a>
+            </Link>
+            <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Contact
+            </Link>
           </nav>
 
           <p className="text-sm text-muted-foreground">
