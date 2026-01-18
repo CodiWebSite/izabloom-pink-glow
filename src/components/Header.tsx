@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, ShoppingCart, Heart, User } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingCart, Heart, User, LogOut } from "lucide-react";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
 import {
@@ -9,6 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
+import { useWishlist } from "@/hooks/useWishlist";
 
 const lumanariItems = [
   { name: "Lumânări Mici", href: "/lumanari-mici" },
@@ -24,7 +27,9 @@ const martiriiItems = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { user, signOut } = useAuth();
+  const { itemCount: cartCount } = useCart();
+  const { itemCount: wishlistCount } = useWishlist();
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary/5 backdrop-blur-sm border-b border-border/50">
       <div className="container mx-auto px-4">
@@ -84,22 +89,38 @@ const Header = () => {
           </nav>
 
           {/* User Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <Link to="/wishlist">
-              <Button variant="ghost" size="icon" className="hidden sm:flex">
+              <Button variant="ghost" size="icon" className="hidden sm:flex relative">
                 <Heart className="h-5 w-5" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
               </Button>
             </Link>
             <Link to="/cart">
-              <Button variant="ghost" size="icon" className="hidden sm:flex">
+              <Button variant="ghost" size="icon" className="hidden sm:flex relative">
                 <ShoppingCart className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </Button>
             </Link>
-            <Link to="/auth">
-              <Button variant="ghost" size="icon" className="hidden sm:flex">
-                <User className="h-5 w-5" />
+            {user ? (
+              <Button variant="ghost" size="icon" className="hidden sm:flex" onClick={signOut}>
+                <LogOut className="h-5 w-5" />
               </Button>
-            </Link>
+            ) : (
+              <Link to="/auth">
+                <Button variant="ghost" size="icon" className="hidden sm:flex">
+                  <User className="h-5 w-5" />
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <Button
