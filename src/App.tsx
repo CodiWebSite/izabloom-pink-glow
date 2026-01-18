@@ -12,6 +12,9 @@ import MartiriiNunta from "./pages/MartiriiNunta";
 import MarturiiBotez from "./pages/MarturiiBotez";
 import CadouriSpeciale from "./pages/CadouriSpeciale";
 import Contact from "./pages/Contact";
+import Cart from "./pages/Cart";
+import Auth from "./pages/Auth";
+import Wishlist from "./pages/Wishlist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,9 @@ const App = () => (
           <Route path="/marturii-botez" element={<MarturiiBotez />} />
           <Route path="/cadouri-speciale" element={<CadouriSpeciale />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

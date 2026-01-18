@@ -1,17 +1,17 @@
 const Logo = ({ className = "" }: { className?: string }) => {
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
-      {/* Pink Crescent Moon */}
+    <div className={`flex items-center gap-2 ${className}`}>
+      {/* Pink Crescent Moon - proper crescent shape */}
       <svg
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
+        width="28"
+        height="28"
+        viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="text-primary"
       >
         <path
-          d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14c1.5 0 2.942-.235 4.297-.668C15.31 27.59 12 23.186 12 18c0-5.186 3.31-9.59 8.297-11.332A13.955 13.955 0 0016 2z"
+          d="M50 5C25.147 5 5 25.147 5 50s20.147 45 45 45c6.485 0 12.671-1.373 18.246-3.841C53.87 85.847 43 69.354 43 50c0-19.354 10.87-35.847 25.246-41.159C62.671 6.373 56.485 5 50 5z"
           fill="currentColor"
         />
       </svg>

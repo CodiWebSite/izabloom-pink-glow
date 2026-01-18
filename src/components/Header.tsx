@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingCart, Heart, User } from "lucide-react";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
 import {
@@ -26,7 +26,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-primary/5 backdrop-blur-sm border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/">
@@ -83,20 +83,39 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          {/* User Actions */}
+          <div className="flex items-center gap-2">
+            <Link to="/wishlist">
+              <Button variant="ghost" size="icon" className="hidden sm:flex">
+                <Heart className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/cart">
+              <Button variant="ghost" size="icon" className="hidden sm:flex">
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/auth">
+              <Button variant="ghost" size="icon" className="hidden sm:flex">
+                <User className="h-5 w-5" />
+              </Button>
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t border-border">
+          <nav className="lg:hidden py-4 border-t border-border/50">
             <div className="flex flex-col gap-2">
               <Link
                 to="/"
@@ -149,6 +168,29 @@ const Header = () => {
               >
                 Contact
               </Link>
+
+              <div className="border-t border-border/50 my-2" />
+
+              <div className="flex gap-2 px-4">
+                <Link to="/wishlist" onClick={() => setIsMenuOpen(false)}>
+                  <Button variant="outline" size="sm">
+                    <Heart className="h-4 w-4 mr-2" />
+                    Favorite
+                  </Button>
+                </Link>
+                <Link to="/cart" onClick={() => setIsMenuOpen(false)}>
+                  <Button variant="outline" size="sm">
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Coș
+                  </Button>
+                </Link>
+                <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
+                  <Button variant="outline" size="sm">
+                    <User className="h-4 w-4 mr-2" />
+                    Cont
+                  </Button>
+                </Link>
+              </div>
             </div>
           </nav>
         )}
