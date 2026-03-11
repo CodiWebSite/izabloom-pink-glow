@@ -10,7 +10,7 @@ const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, hsl(340 40% 97% / 0.7), hsl(340 40% 97% / 0.5), hsl(340 40% 97%))" }} />
       </div>
 
       {/* Content */}
@@ -49,7 +49,7 @@ const Hero = () => {
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: "linear-gradient(to top, hsl(340 40% 97%), transparent)" }} />
     </section>
   );
 };
