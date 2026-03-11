@@ -6,7 +6,7 @@ import scentedCandles from "@/assets/scented-candles.jpg";
 
 const LumanariDelicioase = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-primary/5 via-accent/10 to-background">
       <Header />
       <main>
         <PageHero

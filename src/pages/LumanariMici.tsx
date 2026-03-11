@@ -6,7 +6,7 @@ import smallCandles from "@/assets/small-candles.jpg";
 
 const LumanariMici = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-primary/5 via-accent/10 to-background">
       <Header />
       <main>
         <PageHero

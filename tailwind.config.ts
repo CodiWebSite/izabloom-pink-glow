@@ -61,38 +61,29 @@ export default {
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)',
-  			'2xl': 'calc(var(--radius) * 1.5)',
-  			'3xl': 'calc(var(--radius) * 2)'
+  			sm: 'calc(var(--radius) - 4px)'
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: { height: '0' },
-  				to: { height: 'var(--radix-accordion-content-height)' }
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
   			},
   			'accordion-up': {
-  				from: { height: 'var(--radix-accordion-content-height)' },
-  				to: { height: '0' }
-  			},
-  			'float': {
-  				'0%, 100%': { transform: 'translateY(0px)' },
-  				'50%': { transform: 'translateY(-20px)' }
-  			},
-  			'float-slow': {
-  				'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-  				'50%': { transform: 'translateY(-30px) rotate(5deg)' }
-  			},
-  			'shimmer': {
-  				'0%': { backgroundPosition: '-200% 0' },
-  				'100%': { backgroundPosition: '200% 0' }
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'float': 'float 6s ease-in-out infinite',
-  			'float-slow': 'float-slow 8s ease-in-out infinite',
-  			'shimmer': 'shimmer 3s ease-in-out infinite'
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',
@@ -104,10 +95,39 @@ export default {
   			'2xl': 'var(--shadow-2xl)'
   		},
   		fontFamily: {
-  			sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-  			serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
-  			display: ['Dancing Script', 'cursive'],
-  			mono: ['ui-monospace', 'SFMono-Regular', 'monospace']
+  			sans: [
+  				'Poppins',
+  				'ui-sans-serif',
+  				'system-ui',
+  				'-apple-system',
+  				'BlinkMacSystemFont',
+  				'Segoe UI',
+  				'Roboto',
+  				'Helvetica Neue',
+  				'Arial',
+  				'Noto Sans',
+  				'sans-serif'
+  			],
+  			serif: [
+  				'Merriweather',
+  				'ui-serif',
+  				'Georgia',
+  				'Cambria',
+  				'Times New Roman',
+  				'Times',
+  				'serif'
+  			],
+  			mono: [
+  				'JetBrains Mono',
+  				'ui-monospace',
+  				'SFMono-Regular',
+  				'Menlo',
+  				'Monaco',
+  				'Consolas',
+  				'Liberation Mono',
+  				'Courier New',
+  				'monospace'
+  			]
   		}
   	}
   },
