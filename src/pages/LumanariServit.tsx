@@ -6,7 +6,7 @@ import heroCandles from "@/assets/hero-candles.jpg";
 
 const LumanariServit = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 via-accent/10 to-background">
+    <div className="min-h-screen bg-background">
       <Header />
       <main>
         <PageHero

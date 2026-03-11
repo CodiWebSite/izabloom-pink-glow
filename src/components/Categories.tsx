@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import CategoryCard from "./CategoryCard";
 import smallCandles from "@/assets/small-candles.jpg";
 import largeCandles from "@/assets/large-candles.jpg";
@@ -47,20 +48,30 @@ const categories = [
 
 const Categories = () => {
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
-            Descoperă Colecțiile Noastre
+    <section className="py-24 relative">
+      {/* Subtle background accent */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/30 to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <span className="text-sm font-medium text-primary tracking-widest uppercase">Colecții</span>
+          <h2 className="text-4xl md:text-5xl font-serif text-foreground mt-3 mb-5">
+            Descoperă Lumea Izabloom
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Fiecare produs este creat cu grijă și pasiune, folosind cele mai fine ingrediente naturale
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category) => (
-            <CategoryCard key={category.title} {...category} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category, index) => (
+            <CategoryCard key={category.title} {...category} index={index} />
           ))}
         </div>
       </div>

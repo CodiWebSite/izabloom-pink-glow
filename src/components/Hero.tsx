@@ -1,66 +1,147 @@
+import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-candles.jpg";
 import { Button } from "./ui/button";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import CrescentMoon from "./CrescentMoon";
 
 const Hero = () => {
   return (
-    <section id="acasa" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Animated Background Blobs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/4 -right-1/4 w-[60vw] h-[60vw] rounded-full bg-primary/8 blur-3xl animate-float-slow" />
+        <div className="absolute -bottom-1/4 -left-1/4 w-[50vw] h-[50vw] rounded-full bg-accent/40 blur-3xl animate-float" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-primary/5 blur-3xl" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center pt-20">
-        <div className="max-w-3xl mx-auto space-y-6">
-          {/* Logo Icon */}
-          <div className="flex justify-center mb-4">
-            <svg
-              width="64"
-              height="64"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-primary animate-pulse"
-            >
-              <path
-                d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14c1.5 0 2.942-.235 4.297-.668C15.31 27.59 12 23.186 12 18c0-5.186 3.31-9.59 8.297-11.332A13.955 13.955 0 0016 2z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-
-          <h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-serif italic text-foreground"
-            style={{ fontFamily: "'Dancing Script', 'Merriweather', cursive" }}
+      <div className="relative z-10 container mx-auto px-4 pt-24 pb-12">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left - Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
           >
-            Izabloom
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground font-light">
-            Lumânări artizanale & Mărturii personalizate
-          </p>
-          
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Creăm momente magice pentru cele mai speciale evenimente din viața ta. 
-            Fiecare lumânare este făcută cu dragoste și atenție la detalii.
-          </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-strong"
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-muted-foreground">Handcrafted with love</span>
+            </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" className="text-lg px-8">
-              Vezi Colecția
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 bg-card/50 backdrop-blur-sm">
-              Contactează-ne
-            </Button>
-          </div>
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+                className="flex items-center gap-3"
+              >
+                <CrescentMoon size={40} className="text-primary" />
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-foreground">
+                  Izabloom
+                </h1>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.7 }}
+                className="text-xl md:text-2xl font-serif italic text-muted-foreground"
+              >
+                Lumânări artizanale & Mărturii personalizate
+              </motion.p>
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+              className="text-lg text-muted-foreground max-w-lg leading-relaxed"
+            >
+              Creăm momente magice pentru cele mai speciale evenimente din viața ta. 
+              Fiecare lumânare este făcută cu dragoste și atenție la detalii.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.7 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Link to="/lumanari-mici">
+                <Button size="lg" className="text-base px-8 h-14 rounded-2xl glow-sm group">
+                  Descoperă Colecția
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="outline" size="lg" className="text-base px-8 h-14 rounded-2xl glass">
+                  Contactează-ne
+                </Button>
+              </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="flex gap-8 pt-4"
+            >
+              {[
+                { value: "500+", label: "Produse Create" },
+                { value: "200+", label: "Clienți Fericiți" },
+                { value: "100%", label: "Naturale" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right - Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden glow">
+              <img
+                src={heroImage}
+                alt="Lumânări artizanale Izabloom"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent" />
+            </div>
+
+            {/* Floating Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              className="absolute -bottom-6 -left-6 glass-strong rounded-2xl p-5 shadow-lg"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CrescentMoon size={20} className="text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">Lucrate Manual</p>
+                  <p className="text-xs text-muted-foreground">Cu ingrediente naturale</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
