@@ -95,6 +95,13 @@ All colors MUST be HSL.
     --tracking-normal: 0em;
 
     --spacing: 0.25rem;
+
+    --glass-bg: 340 40% 97% / 0.7;
+    --glass-border: 340 60% 90% / 0.5;
+    --glass-shadow: 0 8px 32px 0 hsl(333 71% 50% / 0.08);
+    --glass-dropdown-bg: 340 40% 97% / 0.85;
+    --glass-dropdown-border: 340 60% 88% / 0.6;
+    --nav-hover: 333 71% 50% / 0.08;
   }
 
   .dark {
