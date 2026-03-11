@@ -1,5 +1,6 @@
 import heroImage from "@/assets/hero-candles.jpg";
 import { Button } from "./ui/button";
+import CrescentMoon from "./CrescentMoon";
 
 const Hero = () => {
   return (
@@ -17,19 +18,7 @@ const Hero = () => {
         <div className="max-w-3xl mx-auto space-y-6">
           {/* Logo Icon */}
           <div className="flex justify-center mb-4">
-            <svg
-              width="64"
-              height="64"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-primary animate-pulse"
-            >
-              <path
-                d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14c1.5 0 2.942-.235 4.297-.668C15.31 27.59 12 23.186 12 18c0-5.186 3.31-9.59 8.297-11.332A13.955 13.955 0 0016 2z"
-                fill="currentColor"
-              />
-            </svg>
+            <CrescentMoon size={64} glow />
           </div>
 
           <h1 
