@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 interface CrescentMoonProps {
   className?: string;
   size?: number;
@@ -5,7 +7,10 @@ interface CrescentMoonProps {
 }
 
 const CrescentMoon = ({ className = "", size = 24, glow = false }: CrescentMoonProps) => {
-  const id = `moon-${Math.random().toString(36).slice(2, 9)}`;
+  const id = useId().replace(/:/g, "");
+
+  const moonPath =
+    "M50 2 A48 48 0 1 0 50 98 A48 48 0 1 0 50 2 Z M70 10 A40 40 0 1 1 70 90 A40 40 0 1 1 70 10 Z";
 
   return (
     <svg
@@ -15,49 +20,35 @@ const CrescentMoon = ({ className = "", size = 24, glow = false }: CrescentMoonP
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      aria-hidden="true"
     >
       <defs>
-        <linearGradient id={`${id}-grad`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="hsl(340, 80%, 75%)" />
-          <stop offset="50%" stopColor="hsl(333, 71%, 55%)" />
-          <stop offset="100%" stopColor="hsl(325, 65%, 48%)" />
+        <linearGradient id={`${id}-grad`} x1="18" y1="12" x2="78" y2="88" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="hsl(334 86% 82%)" />
+          <stop offset="55%" stopColor="hsl(333 71% 55%)" />
+          <stop offset="100%" stopColor="hsl(326 62% 44%)" />
         </linearGradient>
-        <radialGradient id={`${id}-inner`} cx="25%" cy="25%" r="60%">
-          <stop offset="0%" stopColor="hsl(345, 100%, 88%)" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="hsl(333, 70%, 50%)" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id={`${id}-sheen`} cx="20%" cy="18%" r="40%">
-          <stop offset="0%" stopColor="white" stopOpacity="0.35" />
+        <radialGradient id={`${id}-gloss`} cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(34 24) rotate(52) scale(42 34)">
+          <stop offset="0%" stopColor="white" stopOpacity="0.55" />
           <stop offset="100%" stopColor="white" stopOpacity="0" />
         </radialGradient>
+        <filter id={`${id}-shadow`} x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="hsl(333 60% 45%)" floodOpacity="0.22" />
+        </filter>
         {glow && (
-          <filter id={`${id}-glow`} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3.5" result="blur" />
+          <filter id={`${id}-glow`} x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
         )}
-        <filter id={`${id}-shadow`} x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="1" dy="2" stdDeviation="2.5" floodColor="hsl(333, 71%, 40%)" floodOpacity="0.2" />
-        </filter>
       </defs>
 
       <g filter={glow ? `url(#${id}-glow)` : `url(#${id}-shadow)`}>
-        {/* Elegant thin crescent: outer arc + inner arc offset to the right */}
-        <path
-          d="M45 2 A48 48 0 1 0 45 98 A38 38 0 1 1 45 2 Z"
-          fill={`url(#${id}-grad)`}
-        />
-        <path
-          d="M45 2 A48 48 0 1 0 45 98 A38 38 0 1 1 45 2 Z"
-          fill={`url(#${id}-inner)`}
-        />
-        <path
-          d="M45 2 A48 48 0 1 0 45 98 A38 38 0 1 1 45 2 Z"
-          fill={`url(#${id}-sheen)`}
-        />
+        <path d={moonPath} fill={`url(#${id}-grad)`} fillRule="evenodd" clipRule="evenodd" />
+        <path d={moonPath} fill={`url(#${id}-gloss)`} fillRule="evenodd" clipRule="evenodd" />
       </g>
     </svg>
   );
