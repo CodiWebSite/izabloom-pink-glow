@@ -51,9 +51,9 @@ const Header = () => {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 Lumânări <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-[#fdf2f4] border-[#f8d7e0]">
                 {lumanariItems.map((item) => (
-                  <DropdownMenuItem key={item.href} asChild>
+                  <DropdownMenuItem key={item.href} asChild className="text-foreground hover:bg-[#f8d7e0] focus:bg-[#f8d7e0] cursor-pointer">
                     <Link to={item.href}>{item.name}</Link>
                   </DropdownMenuItem>
                 ))}
@@ -64,9 +64,9 @@ const Header = () => {
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 Mărturii <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-[#fdf2f4] border-[#f8d7e0]">
                 {martiriiItems.map((item) => (
-                  <DropdownMenuItem key={item.href} asChild>
+                  <DropdownMenuItem key={item.href} asChild className="text-foreground hover:bg-[#f8d7e0] focus:bg-[#f8d7e0] cursor-pointer">
                     <Link to={item.href}>{item.name}</Link>
                   </DropdownMenuItem>
                 ))}
