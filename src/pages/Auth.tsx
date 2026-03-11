@@ -57,7 +57,7 @@ const Auth = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-primary/5 via-accent/10 to-background">
       <Header />
       <main className="flex-1 pt-16 md:pt-20 flex items-center justify-center py-12 px-4">
-        <Card className="w-full max-w-md bg-card/80 backdrop-blur-sm">
+        <Card className="w-full max-w-md bg-[#fbe8ec] backdrop-blur-sm border-[#f5c6d0] shadow-lg">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
               <Logo />
