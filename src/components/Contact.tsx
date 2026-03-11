@@ -5,7 +5,7 @@ import { Textarea } from "./ui/textarea";
 
 const Contact = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20" style={{ background: "hsl(340 40% 97%)" }}>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
