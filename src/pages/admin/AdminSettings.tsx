@@ -45,7 +45,7 @@ const AdminSettings = () => {
     setSaving(key);
     const { error } = await supabase
       .from("site_settings")
-      .upsert([{ key, value: s[key] as unknown as object }], { onConflict: "key" });
+      .upsert([{ key, value: s[key] as never }], { onConflict: "key" });
     setSaving(null);
     if (error) toast({ title: "Eroare", description: error.message, variant: "destructive" });
     else toast({ title: "Salvat" });
