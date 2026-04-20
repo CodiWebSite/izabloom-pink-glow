@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildWhatsAppLink, DEFAULT_WHATSAPP } from "@/lib/whatsapp";
+import heroCandles from "@/assets/hero-candles.jpg";
 
 const Hero = () => {
   const { settings } = useSiteSettings();
@@ -21,13 +22,29 @@ const Hero = () => {
           "radial-gradient(ellipse at top, hsl(340 60% 94%) 0%, hsl(340 40% 97%) 60%, hsl(340 40% 97%) 100%)",
       }}
     >
+      {/* Hero background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroCandles}
+          alt="Lumânări artizanale Izabloom"
+          className="w-full h-full object-cover opacity-40"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, hsl(340 40% 97% / 0.7) 0%, hsl(340 40% 97% / 0.85) 60%, hsl(340 40% 97%) 100%)",
+          }}
+        />
+      </div>
+
       {/* Decorative blobs */}
       <div
-        className="absolute top-20 -left-20 w-96 h-96 rounded-full opacity-40 blur-3xl"
+        className="absolute top-20 -left-20 w-96 h-96 rounded-full opacity-40 blur-3xl z-0"
         style={{ background: "radial-gradient(circle, hsl(333 71% 80%), transparent 70%)" }}
       />
       <div
-        className="absolute bottom-10 -right-20 w-[28rem] h-[28rem] rounded-full opacity-30 blur-3xl"
+        className="absolute bottom-10 -right-20 w-[28rem] h-[28rem] rounded-full opacity-30 blur-3xl z-0"
         style={{ background: "radial-gradient(circle, hsl(340 80% 85%), transparent 70%)" }}
       />
 
@@ -108,7 +125,7 @@ const Hero = () => {
       </div>
 
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-[1]"
         style={{ background: "linear-gradient(to top, hsl(340 40% 97%), transparent)" }}
       />
     </section>
