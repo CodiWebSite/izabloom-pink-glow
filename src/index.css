@@ -12,23 +12,24 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 4% 95%;
-    --foreground: 240 5% 10%;
+    /* Soft pink milk background + elegant muted plum text */
+    --background: 345 45% 97%;
+    --foreground: 335 22% 24%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 240 5% 10%;
+    --card: 345 50% 98%;
+    --card-foreground: 335 22% 24%;
 
-    --popover: 240 5% 90%;
-    --popover-foreground: 240 5% 10%;
+    --popover: 345 50% 98%;
+    --popover-foreground: 335 22% 24%;
 
-    --primary: 333 71% 50%;
-    --primary-foreground: 327 73% 97%;
+    --primary: 333 55% 48%;
+    --primary-foreground: 345 50% 98%;
 
-    --secondary: 240 5% 33%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 335 18% 38%;
+    --secondary-foreground: 345 50% 98%;
 
-    --muted: 240 4% 83%;
-    --muted-foreground: 240 5% 10%;
+    --muted: 340 25% 92%;
+    --muted-foreground: 335 16% 42%;
 
     --accent: 355 100% 97%;
     --accent-foreground: 349 89% 60%;
@@ -163,6 +164,15 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    min-height: 100vh;
+    background-color: hsl(var(--background));
+    background-image: linear-gradient(
+      to bottom,
+      hsl(345 50% 98%) 0%,
+      hsl(345 45% 97%) 40%,
+      hsl(340 38% 95%) 100%
+    );
+    background-attachment: fixed;
   }
 }
