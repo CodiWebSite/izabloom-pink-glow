@@ -1,55 +1,116 @@
-import heroImage from "@/assets/hero-candles.jpg";
 import { Button } from "./ui/button";
 import CrescentMoon from "./CrescentMoon";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { buildWhatsAppLink, DEFAULT_WHATSAPP } from "@/lib/whatsapp";
 
 const Hero = () => {
+  const { settings } = useSiteSettings();
+  const waLink = buildWhatsAppLink(
+    settings.contact.whatsapp || DEFAULT_WHATSAPP,
+    "Bună! Aș dori mai multe informații despre lumânările Izabloom."
+  );
+
   return (
-    <section id="acasa" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, hsl(340 40% 97% / 0.7), hsl(340 40% 97% / 0.5), hsl(340 40% 97%))" }} />
-      </div>
+    <section
+      id="acasa"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      style={{
+        background:
+          "radial-gradient(ellipse at top, hsl(340 60% 94%) 0%, hsl(340 40% 97%) 60%, hsl(340 40% 97%) 100%)",
+      }}
+    >
+      {/* Decorative blobs */}
+      <div
+        className="absolute top-20 -left-20 w-96 h-96 rounded-full opacity-40 blur-3xl"
+        style={{ background: "radial-gradient(circle, hsl(333 71% 80%), transparent 70%)" }}
+      />
+      <div
+        className="absolute bottom-10 -right-20 w-[28rem] h-[28rem] rounded-full opacity-30 blur-3xl"
+        style={{ background: "radial-gradient(circle, hsl(340 80% 85%), transparent 70%)" }}
+      />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center pt-20">
-        <div className="max-w-3xl mx-auto space-y-6">
-          {/* Logo Icon */}
-          <div className="flex justify-center mb-4">
-            <CrescentMoon size={64} glow />
-          </div>
-
-          <h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-serif italic text-foreground"
-            style={{ fontFamily: "'Dancing Script', 'Merriweather', cursive" }}
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl mx-auto space-y-6"
+        >
+          <motion.div
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 150 }}
+            className="flex justify-center mb-2"
           >
-            Izabloom
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground font-light">
-            Lumânări artizanale & Mărturii personalizate
-          </p>
-          
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Creăm momente magice pentru cele mai speciale evenimente din viața ta. 
-            Fiecare lumânare este făcută cu dragoste și atenție la detalii.
-          </p>
+            <CrescentMoon size={80} glow />
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" className="text-lg px-8">
-              Vezi Colecția
-            </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 bg-card/50 backdrop-blur-sm">
-              Contactează-ne
-            </Button>
-          </div>
-        </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold tracking-[0.2em] uppercase"
+          >
+            {settings.hero.subtitle}
+          </motion.div>
+
+          <h1
+            className="text-6xl md:text-8xl lg:text-9xl font-serif italic text-foreground leading-none"
+            style={{ fontFamily: "'Dancing Script', cursive" }}
+          >
+            {settings.hero.title.split(" ").map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + i * 0.15, duration: 0.6 }}
+                className="inline-block mr-3"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+          >
+            {settings.hero.description}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+            className="flex flex-col sm:flex-row gap-3 justify-center pt-4"
+          >
+            <Link to="/marturii-botez">
+              <Button size="lg" className="rounded-full px-8 shadow-lg hover:shadow-xl transition-shadow">
+                Vezi Colecția
+              </Button>
+            </Link>
+            <a href={waLink} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full px-8 backdrop-blur-sm bg-card/60"
+              >
+                Scrie-ne pe WhatsApp
+              </Button>
+            </a>
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: "linear-gradient(to top, hsl(340 40% 97%), transparent)" }} />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        style={{ background: "linear-gradient(to top, hsl(340 40% 97%), transparent)" }}
+      />
     </section>
   );
 };
