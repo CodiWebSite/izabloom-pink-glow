@@ -13,8 +13,6 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
 import { useWishlist } from "@/hooks/useWishlist";
-import { useUserRole } from "@/hooks/useUserRole";
-import { Shield } from "lucide-react";
 
 const lumanariItems = [
   { name: "Lumânări Mici", href: "/lumanari-mici" },
@@ -117,7 +115,6 @@ const Header = () => {
   const { user, signOut } = useAuth();
   const { itemCount: cartCount } = useCart();
   const { itemCount: wishlistCount } = useWishlist();
-  const { isAdmin } = useUserRole();
 
   return (
     <motion.header
@@ -191,13 +188,6 @@ const Header = () => {
                 )}
               </Button>
             </Link>
-            {isAdmin && (
-              <Link to="/admin">
-                <Button variant="ghost" size="icon" className="hidden sm:flex rounded-full hover:bg-[hsla(var(--nav-hover))] transition-all duration-300" aria-label="Admin">
-                  <Shield className="h-5 w-5 text-primary" />
-                </Button>
-              </Link>
-            )}
             {user ? (
               <Button variant="ghost" size="icon" className="hidden sm:flex rounded-full hover:bg-[hsla(var(--nav-hover))] transition-all duration-300" onClick={signOut}>
                 <LogOut className="h-5 w-5" />

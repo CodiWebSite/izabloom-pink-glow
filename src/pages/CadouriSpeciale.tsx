@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ProductGrid from "@/components/ProductGrid";
-import specialGifts from "@/assets/promo-banner.jpg";
+import specialGifts from "@/assets/special-gifts.jpg";
 
 const CadouriSpeciale = () => {
   return (

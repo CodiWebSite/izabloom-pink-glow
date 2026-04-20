@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ProductGrid from "@/components/ProductGrid";
-import scentedCandles from "@/assets/promo-banner.jpg";
+import scentedCandles from "@/assets/scented-candles.jpg";
 
 const LumanariDelicioase = () => {
   return (

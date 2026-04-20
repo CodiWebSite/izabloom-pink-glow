@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ProductGrid from "@/components/ProductGrid";
-import weddingFavors from "@/assets/promo-banner.jpg";
+import weddingFavors from "@/assets/wedding-favors.jpg";
 
 const MartiriiNunta = () => {
   return (

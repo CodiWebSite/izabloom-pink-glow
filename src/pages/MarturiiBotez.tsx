@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ProductGrid from "@/components/ProductGrid";
-import baptismFavors from "@/assets/promo-banner.jpg";
+import baptismFavors from "@/assets/baptism-favors.jpg";
 
 const MarturiiBotez = () => {
   return (
