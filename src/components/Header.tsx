@@ -13,6 +13,8 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
 import { useWishlist } from "@/hooks/useWishlist";
+import { useUserRole } from "@/hooks/useUserRole";
+import { Shield } from "lucide-react";
 
 const lumanariItems = [
   { name: "Lumânări Mici", href: "/lumanari-mici" },
@@ -115,6 +117,7 @@ const Header = () => {
   const { user, signOut } = useAuth();
   const { itemCount: cartCount } = useCart();
   const { itemCount: wishlistCount } = useWishlist();
+  const { isAdmin } = useUserRole();
 
   return (
     <motion.header
