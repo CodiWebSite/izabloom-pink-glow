@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ProductGrid from "@/components/ProductGrid";
-import largeCandles from "@/assets/large-candles.jpg";
+import largeCandles from "@/assets/promo-banner.jpg";
 
 const LumanariMari = () => {
   return (
