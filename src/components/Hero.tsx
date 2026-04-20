@@ -27,13 +27,13 @@ const Hero = () => {
         <img
           src={heroCandles}
           alt="Lumânări artizanale Izabloom"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, hsl(340 40% 97% / 0.7) 0%, hsl(340 40% 97% / 0.85) 60%, hsl(340 40% 97%) 100%)",
+              "linear-gradient(to bottom, hsl(340 40% 97% / 0.35) 0%, hsl(340 40% 97% / 0.55) 60%, hsl(340 40% 97% / 0.95) 100%)",
           }}
         />
       </div>
