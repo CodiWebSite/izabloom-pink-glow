@@ -56,14 +56,15 @@ export const useSiteSettings = () => {
   const load = async () => {
     const { data } = await supabase.from("site_settings").select("key, value");
     if (data) {
-      const merged: SiteSettings = { ...defaults };
+      const merged = { ...defaults } as unknown as Record<string, Record<string, unknown>>;
+      const defaultsMap = defaults as unknown as Record<string, Record<string, unknown>>;
       data.forEach((row: { key: string; value: unknown }) => {
-        (merged as Record<string, unknown>)[row.key] = {
-          ...(defaults as Record<string, Record<string, unknown>>)[row.key],
-          ...(row.value as Record<string, unknown>),
+        merged[row.key] = {
+          ...(defaultsMap[row.key] || {}),
+          ...((row.value as Record<string, unknown>) || {}),
         };
       });
-      setSettings(merged);
+      setSettings(merged as unknown as SiteSettings);
     }
     setLoading(false);
   };
