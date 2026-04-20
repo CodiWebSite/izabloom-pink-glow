@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import ProductGrid from "@/components/ProductGrid";
-import heroCandles from "@/assets/hero-candles.jpg";
+import heroCandles from "@/assets/logo-izabloom.jpg";
 
 const LumanariServit = () => {
   return (
